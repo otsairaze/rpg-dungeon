@@ -1,0 +1,32 @@
+.wrapper {
+  display: flex;
+  gap: 51px;
+}
+
+.item_block {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.item {
+  display: flex;
+  gap: 20px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 105px;
+}
+
+.info_block {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.item_list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}

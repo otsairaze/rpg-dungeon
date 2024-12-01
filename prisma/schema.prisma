@@ -1,0 +1,123 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+  id       Int       @id @default(autoincrement())
+  name     String
+  email    String
+  cash     Int
+  energy   Int
+  imageUrl String
+  token    Int
+  role     USER_ROLE @default(USER)
+
+  inventory    Inventory[]
+  history      DungeonHistory[]
+  itemsForSale ItemShop[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Inventory {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+  imageUrl    String
+  cash        Int
+
+  user   User? @relation(fields: [userId], references: [id])
+  userId Int?
+
+  dungeonHistory   DungeonHistory? @relation(fields: [dungeonHistoryId], references: [id])
+  dungeonHistoryId Int?
+
+  itemForSale ItemShop? @relation
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Dungeon {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  imageUrl    String
+  energy      Int
+  difficulty  Int
+  cash        Int
+
+  loot        Loot[]
+  history DungeonHistory[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DungeonHistory {
+  id          Int            @id @default(autoincrement())
+  user        User           @relation(fields: [userId], references: [id])
+  userId      Int
+  dungeon     Dungeon        @relation(fields: [dungeonId], references: [id])
+  dungeonId   Int
+  status      DUNGEON_STATUS
+  completedAt DateTime       @default(now())
+
+  lootGained Inventory[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ItemShop {
+  id Int @id @default(autoincrement())
+
+  itemId Int       @unique
+  item   Inventory @relation(fields: [itemId], references: [id])
+
+  sellerId Int
+  seller   User @relation(fields: [sellerId], references: [id])
+
+  price  Int
+  status SALE_STATUS @default(ACTIVE)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Loot {
+  id        Int     @id @default(autoincrement())
+  title     String
+  energy    Int
+  imageUrl  String
+  rarity    Int
+
+  dungeon   Dungeon @relation(fields: [dungeonId], references: [id])
+  dungeonId Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum USER_ROLE {
+  ADMIN
+  USER
+}
+
+enum DUNGEON_STATUS {
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+}
+
+enum SALE_STATUS {
+  ACTIVE
+  SOLD
+}

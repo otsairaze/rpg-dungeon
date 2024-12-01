@@ -1,0 +1,51 @@
+export const loot = [
+  {
+    imageUrl: "/card/dungeon/Heaven/loot/first.png",
+    title: "Кость скелета",
+    energy: 10,
+    dungeonId: 1,
+    rarity: 1,
+  },
+  {
+    imageUrl: "/card/dungeon/Heaven/loot/second.png",
+    title: "Святая вода",
+    energy: 16,
+    dungeonId: 1,
+    rarity: 2,
+  },
+  {
+    imageUrl: "/card/dungeon/Heaven/loot/third.png",
+    title: "Сломанный меч",
+    energy: 3,
+    dungeonId: 1,
+    rarity: 3,
+  },
+  {
+    imageUrl: "/card/dungeon/HouseOfWorship/loot/first.png",
+    title: "Экскалибур",
+    energy: 11,
+    dungeonId: 2,
+    rarity: 1,
+  },
+  {
+    imageUrl: "/card/dungeon/HouseOfWorship/loot/second.png",
+    title: "Магический посох",
+    energy: 12,
+    dungeonId: 2,
+    rarity: 2,
+  },
+  {
+    imageUrl: "/card/dungeon/HouseOfWorship/loot/third.png",
+    title: "Шкура",
+    energy: 13,
+    dungeonId: 2,
+    rarity: 3,
+  },
+  {
+    imageUrl: "/card/dungeon/HouseOfWorship/loot/four.png",
+    title: "Костер",
+    energy: 14,
+    dungeonId: 2,
+    rarity: 4,
+  },
+];

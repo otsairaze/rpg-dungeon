@@ -1,0 +1,10 @@
+.button {
+  padding-block: 10px;
+  padding-inline: 100px;
+
+  border-radius: 4px;
+}
+
+.default {
+  background-color: #ff4646;
+}
